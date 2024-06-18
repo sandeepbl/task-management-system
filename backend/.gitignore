@@ -1,0 +1,8 @@
+.env
+/.idea
+/__pycache__/
+/.venv/
+aws creds.txt
+/.coverage
+/.pytest_cache/
+*__pycache__/

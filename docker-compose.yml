@@ -1,0 +1,27 @@
+
+services:
+  backend:
+    build: ./backend
+    container_name: backend
+    environment:
+      - FLASK_ENV=production
+      - DATABASE_URL=postgresql://<aws_rds_username>:<aws_rds_password>@<aws_rds_endpoint>:5432/<aws_rds_dbname>
+      - JWT_SECRET_KEY=your_jwt_secret_key
+    ports:
+      - "5000:5000"
+    networks:
+      - tms_network
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    networks:
+      - tms_network
+
+networks:
+  tms_network:
+    driver: bridge

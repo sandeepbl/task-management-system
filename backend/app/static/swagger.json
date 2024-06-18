@@ -1,0 +1,274 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is the Backend API for the Task Management System serving the Vue.js Frontend",
+    "version": "1.0.0",
+    "title": "Task Management System - Flask App API",
+    "contact": {
+      "email": "sandeepbl@gmail.com"
+    }
+  },
+  "host": "localhost:5000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/projects/create/": {
+      "post": {
+        "summary": "Create a new project",
+        "responses": {
+          "201": {
+            "description": "Project created"
+          }
+        }
+      }
+    },
+    "/projects/": {
+      "get": {
+        "summary": "Retrieve a list of projects",
+        "responses": {
+          "200": {
+            "description": "List of projects"
+          }
+        }
+      }
+    },
+    "/projects/{id}/": {
+      "put": {
+        "summary": "Update project details",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Project updated"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a project",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Project deleted"
+          }
+        }
+      }
+    },
+    "/tasks/create/": {
+      "post": {
+        "summary": "Add a task to a project",
+        "responses": {
+          "201": {
+            "description": "Task created"
+          }
+        }
+      }
+    },
+    "/tasks/": {
+      "get": {
+        "summary": "Retrieve a list of all tasks",
+        "responses": {
+          "200": {
+            "description": "List of tasks"
+          }
+        }
+      }
+    },
+    "/tasks/project/{project_id}/": {
+      "get": {
+        "summary": "Retrieve a list of tasks for a project",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of tasks for the project"
+          }
+        }
+      }
+    },
+    "/tasks/{task_id}/": {
+      "put": {
+        "summary": "Update task details",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Task updated"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete task",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Task deleted"
+          }
+        }
+      }
+    },
+    "/users/register/": {
+      "post": {
+        "summary": "Register a new user",
+        "responses": {
+          "201": {
+            "description": "User registered"
+          }
+        }
+      }
+    },
+    "/users/login/": {
+      "post": {
+        "summary": "Login and obtain a JWT token",
+        "responses": {
+          "200": {
+            "description": "JWT token obtained"
+          }
+        }
+      }
+    },
+    "/refresh/": {
+      "get": {
+        "summary": "Refresh token when the access token has expired",
+        "responses": {
+          "200": {
+            "description": "Token refreshed"
+          }
+        }
+      }
+    },
+    "/users/": {
+      "get": {
+        "summary": "Retrieve List of Users",
+        "responses": {
+          "200": {
+            "description": "List of users"
+          }
+        }
+      }
+    },
+    "/users/{id}/": {
+      "get": {
+        "summary": "View User Profile",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User profile"
+          }
+        }
+      },
+      "put": {
+        "summary": "Modify User",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User modified"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete User",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "User deleted"
+          }
+        }
+      }
+    },
+    "/healthcheck/": {
+      "get": {
+        "summary": "Check if the API server is reachable",
+        "responses": {
+          "200": {
+            "description": "API server is reachable"
+          }
+        }
+      }
+    },
+    "/access/": {
+      "get": {
+        "summary": "Check if JWT token gives User access",
+        "responses": {
+          "200": {
+            "description": "User access"
+          }
+        }
+      }
+    },
+    "/admin/": {
+      "get": {
+        "summary": "Check if JWT token gives Admin access",
+        "responses": {
+          "200": {
+            "description": "Admin access"
+          }
+        }
+      }
+    },
+    "/whoami/": {
+      "get": {
+        "summary": "A quick way to find whoiam",
+        "responses": {
+          "200": {
+            "description": "Current user"
+          }
+        }
+      }
+    }
+  }
+}
