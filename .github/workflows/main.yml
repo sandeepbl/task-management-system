@@ -20,7 +20,7 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
       with:
-        region: ${{ AWS_REGION }}
+        region: $AWS_REGION
 
     - name: Build and push backend image
       id: backend-image
