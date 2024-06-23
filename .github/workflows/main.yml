@@ -52,8 +52,8 @@ jobs:
         
     - name: Deploy to ECS
       env:
-        AWS_REGION: us-east-1  # Change to your desired region
-        CLUSTER_NAME: my-cluster  # Change to your cluster name
+        AWS_REGION: us-east-2  # Change to your desired region
+        CLUSTER_NAME: tms-ecs-cluster  # Change to your cluster name
         SERVICE_NAME_BACKEND: backend-service  # Change to your backend service name
         SERVICE_NAME_FRONTEND: frontend-service  # Change to your frontend service name
         IMAGE_URI_BACKEND: ${{ steps.backend-image.outputs.ECR_REGISTRY }}/${{ steps.backend-image.outputs.ECR_REPOSITORY }}:${{ github.sha }}
