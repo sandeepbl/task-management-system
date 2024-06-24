@@ -1,0 +1,63 @@
+name: Deploy to AWS ECS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Set up AWS CLI
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: AKIA2UC3BO273ZFGAQFB
+        aws-secret-access-key: 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
+        aws-region: us-east-2
+        
+    - name: Log in to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+      
+
+    - name: Build and push backend image
+      id: backend-image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: backend
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./backend
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+    - name: Build and push frontend image
+      id: frontend-image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: frontend
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./frontend
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+    
+        
+    - name: Deploy to ECS
+      env:
+        AWS_REGION: us-east-2  # Change to your desired region
+        CLUSTER_NAME: tms-ecs-cluster  # Change to your cluster name
+        SERVICE_NAME_BACKEND: backend-service  # Change to your backend service name
+        SERVICE_NAME_FRONTEND: frontend-service  # Change to your frontend service name
+        IMAGE_URI_BACKEND: ${{ steps.backend-image.outputs.ECR_REGISTRY }}/${{ steps.backend-image.outputs.ECR_REPOSITORY }}:${{ github.sha }}
+        IMAGE_URI_FRONTEND: ${{ steps.frontend-image.outputs.ECR_REGISTRY }}/${{ steps.frontend-image.outputs.ECR_REPOSITORY }}:${{ github.sha }}
+      run: |
+        aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME_BACKEND --force-new-deployment --region $AWS_REGION
+        aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME_FRONTEND --force-new-deployment --region $AWS_REGION
