@@ -8,7 +8,7 @@ class DefaultConfig(object):
     TESTING = False
     CSRF_ENABLED = True
     SECRET_KEY = 'th1s-r34lly-n33ds-t0-b3-ch4ng3d'
-    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:SanjuMtl06@database-tms.czecim0cqbz3.us-east-2.rds.amazonaws.com/task-management-system'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:SuperSecret12345@database-tms.czecim0cqbz3.us-east-2.rds.amazonaws.com/postgres'
     JWT_SECRET_KEY = 'bd05ce67c2091c6c789e2a27'
 
 

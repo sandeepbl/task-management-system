@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
-    bucket = "my-terraform-state-bucket"
-    key    = "path/to/my/key"
-    region = "us-east-1"
+    bucket = "task-management-system-static-storage"
+    key    = "tms-terraform-state/env/terraform.tfstate"
+    region = "us-east-2"
   }
 }

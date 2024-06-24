@@ -1,1 +1,5 @@
 /.idea
+terraform/tfplan
+terraform/.terraform.lock.hcl
+backend/app/secrets.py
+terraform/.terraform/providers/registry.terraform.io/hashicorp/aws/5.55.0/darwin_amd64/terraform-provider-aws_v5.55.0_x5

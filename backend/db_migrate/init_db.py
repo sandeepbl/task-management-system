@@ -4,7 +4,7 @@ from .app.models import User, Project, Task
 
 
 engine = create_engine(
-    "postgresql://postgres:SanjuMtl06@database-tms.czecim0cqbz3.us-east-2.rds.amazonaws.com/task-management-system"
+    "postgresql://postgres:SuperSecret12345@database-tms.czecim0cqbz3.us-east-2.rds.amazonaws.com/postgres"
 )
 print("Before create database")
 print(database_exists(engine.url))

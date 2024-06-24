@@ -93,8 +93,7 @@ class Task(Base):
         return db.session.query(cls).filter_by(title=search_text).first()
 
 
-DATABASE_URL = "postgresql+psycopg2://postgres:SanjuMtl06@database-tms" \
-               ".czecim0cqbz3.us-east-2.rds.amazonaws.com/task-management-system"
+DATABASE_URL = "postgresql+psycopg2://postgres:SuperSecret12345@database-tms.czecim0cqbz3.us-east-2.rds.amazonaws.com/postgres"
 
 # Creating the PostgreSQL database and tables
 engine = create_engine(DATABASE_URL)
