@@ -1,6 +1,12 @@
-resource "aws_ecr_repository" "main" {
-  name = "tms-ecr-repo"
+resource "aws_ecr_repository" "backend" {
+  name = "tms-backend-ecr-repo"
 }
-output "repository_url" {
-  value = aws_ecr_repository.main.repository_url
+resource "aws_ecr_repository" "frontend" {
+  name = "tms-frontend-ecr-repo"
+}
+output "backend_repository_url" {
+  value = aws_ecr_repository.backend.repository_url
+}
+output "frontend_repository_url" {
+  value = aws_ecr_repository.frontend.repository_url
 }
